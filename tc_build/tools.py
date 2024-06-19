@@ -121,8 +121,8 @@ class HostTools:
         except subprocess.CalledProcessError:
             llvm_tot_ver = 16
         else:
-            if not (match := re.search(r'set\(LLVM_VERSION_MAJOR\s+(\d+)', cmakelists_txt)):
-                raise RuntimeError('Could not find LLVM_VERSION_MAJOR in CMakeLists.txt?')
+            if not (match := re.search(r'set\(LLVM_REQUIRED_CXX_STANDARD\s+(\d+)', cmakelists_txt)):
+                raise RuntimeError('Could not find LLVM_REQUIRED_CXX_STANDARD in CMakeLists.txt?')
             llvm_tot_ver = int(match.groups()[0])
 
         return [f'clang-{num}' for num in range(llvm_tot_ver, 6, -1)]
